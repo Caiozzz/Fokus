@@ -1,6 +1,7 @@
 const btnAdicionarTarefa = document.querySelector('.app__button--add-task');
 const formAdicionarTarefa = document.querySelector('.app__form-add-task');
 const textarea = document.querySelector('.app__form-textarea');
+const btnCancelar = document.querySelector('.app__form-footer__button--cancel');
 const ulTarefas = document.querySelector('.app__section-task-list');
 const tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
 
@@ -26,7 +27,15 @@ function criarElementoTarefa(tarefa) {
 
    const botao = document.createElement('button');
    botao.classList.add('app_button-edit');
-   botao.innerHTML = `<img src="/imagens/edit.png">`;
+   botao.innerHTML = `<img src="./imagens/edit.png">`;
+   botao.onclick = () => {
+      const novaDescricao = prompt('Qual o novo nome da tarefa?');
+      if (novaDescricao){
+         paragrafo.textContent = novaDescricao;
+         tarefa.descricao = novaDescricao;
+         atualizarLocalStorage();
+      }
+   }
 
    li.append(svg);
    li.append(paragrafo);
@@ -34,6 +43,20 @@ function criarElementoTarefa(tarefa) {
 
    return li;
 }
+
+function atualizarLocalStorage() {
+   localStorage.setItem('tarefas', JSON.stringify(tarefas));
+}
+
+function fecharFormulario() {
+   textarea.value = '';
+   formAdicionarTarefa.classList.add('hidden');
+}
+
+tarefas.forEach(tarefa => {
+   const elementoTarefa = criarElementoTarefa(tarefa);
+   ulTarefas.append(elementoTarefa);
+});
 
 formAdicionarTarefa.addEventListener('submit', (evento) => {
    evento.preventDefault();
@@ -44,16 +67,14 @@ formAdicionarTarefa.addEventListener('submit', (evento) => {
 
    tarefas.push(tarefa);
 
-   localStorage.setItem('tarefas', JSON.stringify(tarefas));
+   atualizarLocalStorage();
 
-   textarea.value = '';
-   formAdicionarTarefa.classList.add('hidden');
+   fecharFormulario();
    
    elementoTarefa = criarElementoTarefa(tarefa);
-   ulTarefas.append(elementoTarefa)
+   ulTarefas.append(elementoTarefa);
 })
 
-tarefas.forEach(tarefa => {
-   const elementoTarefa = criarElementoTarefa(tarefa);
-   ulTarefas.append(elementoTarefa);
-});
+btnCancelar.addEventListener('click', () => {
+   fecharFormulario();
+})
