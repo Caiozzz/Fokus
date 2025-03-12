@@ -7,6 +7,7 @@ const paragrafoTarefaEmAndamento = document.querySelector('.app__section-active-
 const tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
 
 let tarefaEmAndamento = null;
+let liTarefaEmAndamento = null;
 
 btnAdicionarTarefa.addEventListener('click', () => {
    formAdicionarTarefa.classList.toggle('hidden');
@@ -53,10 +54,12 @@ function criarElementoTarefa(tarefa) {
       if (tarefaEmAndamento == tarefa) {
          paragrafoTarefaEmAndamento.textContent = '';
          tarefaEmAndamento = null;
+         liTarefaEmAndamento = null;
          return
       }
 
       tarefaEmAndamento = tarefa;
+      liTarefaEmAndamento = li;
       paragrafoTarefaEmAndamento.textContent = tarefa.descricao;
       li.classList.add('app__section-task-list-item-active');
    }
@@ -97,4 +100,16 @@ formAdicionarTarefa.addEventListener('submit', (evento) => {
 
 btnCancelar.addEventListener('click', () => {
    fecharFormulario();
+})
+
+document.addEventListener('FocoFinalizado', () => {
+   if (tarefaEmAndamento && liTarefaEmAndamento){
+      liTarefaEmAndamento.classList.add('app__section-task-list-item-complete');
+      liTarefaEmAndamento.classList.remove('app__section-task-list-item-active');
+      liTarefaEmAndamento.querySelector('button').setAttribute('disabled', 'disabled');
+
+      tarefaEmAndamento = null;
+      liTarefaEmAndamento = null;
+      paragrafoTarefaEmAndamento.textContent = '';
+   }
 })
