@@ -11,9 +11,9 @@ Desenvolvimento do temporizador pomodoro, com diferentes temporizadores e execu�
 ## Parte 2 (Curso: JavaScript: explorando a manipulação de elementos e da localStorage)
 Lista de tarefas utilizando o armazenamento local - localStorage
 - Exibir e esconder um formulário manipulando sua classe css;
-- Criar um novo elemento na lista com document.createElement();
-- Aninhar um elemento dentro de outro com elemento.append();
-- Criar um 'item' na localStorage com localStorage.setItem();
+- Criar um novo elemento na lista com `document.createElement()`;
+- Aninhar um elemento dentro de outro com `elemento.append()`;
+- Criar um 'item' na localStorage com `localStorage.setItem()`;
 - Transformar um objeto em string com API JSON - pois na localStorage só é armazenado texto.
-- Recuperar 'item' da localStorage com localStorage.getItem();
+- Recuperar 'item' da localStorage com `localStorage.getItem()`;
 - Transformar uma string (formatada de modo específico) em objeto com API JSON;
