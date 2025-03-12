@@ -105,6 +105,10 @@ function iniciarOuPausar() {
       if (tempoEmSegundos == 0) {
          pararContagem();
          somFim.play();
+         if (hmtl.getAttribute('data-contexto') == 'foco') {
+            const evento = new CustomEvent('FocoFinalizado');
+            document.dispatchEvent(evento);    
+         }
          return;
       }
       tempoEmSegundos--;
