@@ -100,11 +100,11 @@ function iniciarOuPausar() {
    }
 
    somPlay.play();
+
    contagemRegressiva = setInterval(() => {
       if (tempoEmSegundos == 0) {
          pararContagem();
          somFim.play();
-         alert('Tempo finalizado');
          return;
       }
       tempoEmSegundos--;
