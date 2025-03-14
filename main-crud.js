@@ -45,23 +45,28 @@ function criarElementoTarefa(tarefa) {
    li.append(paragrafo);
    li.append(botao);
 
-   li.onclick = () => {
-      document.querySelectorAll('.app__section-task-list-item-active')
-         .forEach(elemento => {
-            elemento.classList.remove('app__section-task-list-item-active');
-         });
-
-      if (tarefaEmAndamento == tarefa) {
-         paragrafoTarefaEmAndamento.textContent = '';
-         tarefaEmAndamento = null;
-         liTarefaEmAndamento = null;
-         return
+   if (tarefa.concluida) {
+      li.classList.add('app__section-task-list-item-complete');
+      botao.setAttribute('disabled', 'disabled');
+   } else {
+      li.onclick = () => {
+         document.querySelectorAll('.app__section-task-list-item-active')
+            .forEach(elemento => {
+               elemento.classList.remove('app__section-task-list-item-active');
+            });
+   
+         if (tarefaEmAndamento == tarefa) {
+            paragrafoTarefaEmAndamento.textContent = '';
+            tarefaEmAndamento = null;
+            liTarefaEmAndamento = null;
+            return
+         }
+   
+         tarefaEmAndamento = tarefa;
+         liTarefaEmAndamento = li;
+         paragrafoTarefaEmAndamento.textContent = tarefa.descricao;
+         li.classList.add('app__section-task-list-item-active');
       }
-
-      tarefaEmAndamento = tarefa;
-      liTarefaEmAndamento = li;
-      paragrafoTarefaEmAndamento.textContent = tarefa.descricao;
-      li.classList.add('app__section-task-list-item-active');
    }
 
    return li;
@@ -107,6 +112,8 @@ document.addEventListener('FocoFinalizado', () => {
       liTarefaEmAndamento.classList.add('app__section-task-list-item-complete');
       liTarefaEmAndamento.classList.remove('app__section-task-list-item-active');
       liTarefaEmAndamento.querySelector('button').setAttribute('disabled', 'disabled');
+      tarefaEmAndamento.concluida = true;
+      atualizarLocalStorage();
 
       tarefaEmAndamento = null;
       liTarefaEmAndamento = null;
