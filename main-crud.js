@@ -123,14 +123,14 @@ document.addEventListener('FocoFinalizado', () => {
    }
 })
 
-const removeTarefas = (concluida) => {
+const removeTarefas = (somenteConcluidas) => {
    
-   const seletor = concluida ? '.app__section-task-list-item-complete' : '.app__section-task-list-item';
+   const seletor = somenteConcluidas ? '.app__section-task-list-item-complete' : '.app__section-task-list-item';
    document.querySelectorAll(seletor).forEach(elemento => {
       elemento.remove();
    })
 
-   if (concluida) {
+   if (somenteConcluidas) {
       tarefas = tarefas.filter((tarefa) => {
          return !tarefa.concluida;
       });
