@@ -1,6 +1,6 @@
 # Fokus (gerenciamento de tempo)
-Projeto criado no curso 'JavaScript: manipulando elementos no DOM'.
-Aprimorado no curso 'JavaScript: explorando a manipulação de elementos e da localStorage'.
+Projeto criado no curso "JavaScript: manipulando elementos no DOM".
+Aprimorado no curso "JavaScript: explorando a manipulação de elementos e da localStorage".
 
 ## Parte 1 (Curso: JavaScript: manipulando elementos no DOM)
 Desenvolvimento do temporizador pomodoro, com diferentes temporizadores e execução de áudio.
@@ -17,3 +17,4 @@ Lista de tarefas utilizando o armazenamento local - localStorage
 - Transformar um objeto em string com API JSON - pois na localStorage só é armazenado texto.
 - Recuperar 'item' da localStorage com `localStorage.getItem()`;
 - Transformar uma string (formatada de modo específico) em objeto com API JSON;
+- Criar um evento personalizado e dispará-lo;
